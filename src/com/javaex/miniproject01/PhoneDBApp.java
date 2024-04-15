@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class PhoneDBApp {
@@ -150,7 +152,11 @@ public class PhoneDBApp {
 		while (sc.hasNext()) {
 			Person parsedString = new Person();
 			tmp = sc.nextLine().trim();
-			splitTmp = tmp.split(",");
+			splitTmp = regex(tmp);
+			if (splitTmp == null) {
+				System.out.println("why?");
+				continue;
+			}
 			parsedString.setName(splitTmp[0].trim());
 			parsedString.setMp(splitTmp[1].trim());
 			parsedString.setHp(splitTmp[2].trim());
@@ -182,8 +188,18 @@ public class PhoneDBApp {
 		System.out.println("1.리스트  2.등록  3.삭제  4.검색  5.종료");
 		System.out.println("----------------------------------");
 	}
+	
+	private static String[] regex(String inputString) {
+		Pattern pattern = Pattern.compile("\\s*([가-힣]+)\\s*,\\s*([0-9]+-[0-9]+-[0-9]+)\\s*,\\s*([0-9]+-[0-9]+-[0-9]+)\\s*");
+		Matcher matcher = pattern.matcher(inputString);
+		if (matcher.matches()) {
+			return new String[] {matcher.group(1),
+					matcher.group(2),
+					matcher.group(3)};
+		}
+		return null;
+	}
 }
-
 
 
 
