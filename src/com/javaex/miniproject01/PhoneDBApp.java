@@ -153,10 +153,8 @@ public class PhoneDBApp {
 			Person parsedString = new Person();
 			tmp = sc.nextLine().trim();
 			splitTmp = regex(tmp);
-			if (splitTmp == null) {
-				System.out.println("why?");
+			if (splitTmp == null)
 				continue;
-			}
 			parsedString.setName(splitTmp[0].trim());
 			parsedString.setMp(splitTmp[1].trim());
 			parsedString.setHp(splitTmp[2].trim());
