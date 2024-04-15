@@ -143,7 +143,7 @@ public class PhoneDBApp {
 		}
 	}
 	
-	private static List<Person> readFile(File file) throws FileNotFoundException, ArrayIndexOutOfBoundsException {
+	private static List<Person> readFile(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
 		String tmp;
 		String[] splitTmp;
